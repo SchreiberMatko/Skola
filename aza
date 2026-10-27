@@ -1,0 +1,1239 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Príprava na test AZA</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,500;0,600;0,700;1,500&display=swap">
+<style>
+/* Layout: exam-sheet column with a sticky table of contents on wide screens; solutions read like red-pen corrections. */
+:root {
+  --paper: #f6f8fb;
+  --sheet: #ffffff;
+  --ink: #172031;
+  --ink-2: #4d586b;
+  --rule: #dce2ea;
+  --wash: #eef2f7;
+  --pen: #c1272f;
+  --pen-wash: #fcefef;
+  --biro: #2346a0;
+  --ok: #17734a;
+  --f-display: "Spectral", "Iowan Old Style", Georgia, serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1218; --sheet: #151a22; --ink: #e2e7ef; --ink-2: #9ba6b7; --rule: #29313f;
+    --wash: #1b212c; --pen: #ff767b; --pen-wash: #2a181b; --biro: #95b2ff; --ok: #62d097;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1218; --sheet: #151a22; --ink: #e2e7ef; --ink-2: #9ba6b7; --rule: #29313f;
+  --wash: #1b212c; --pen: #ff767b; --pen-wash: #2a181b; --biro: #95b2ff; --ok: #62d097;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 16px/1.6 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--biro); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--biro); outline-offset: 2px; border-radius: 4px; }
+
+.layout {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  padding-block: 32px 80px;
+}
+@media (min-width: 1040px) {
+  .layout { grid-template-columns: 236px minmax(0, 1fr); gap: 48px; }
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 24px); align-self: start; max-height: calc(100vh - 48px); overflow-y: auto; }
+}
+
+/* ---------- table of contents ---------- */
+.toc { font-size: 14px; }
+.toc h2 { font: 600 12px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 10px; }
+.toc ol { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 2px; }
+.toc a { display: block; padding: 4px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.toc a:hover { background: var(--wash); }
+.toc a small { color: var(--ink-2); }
+@media (max-width: 1039px) {
+  .toc { background: var(--sheet); border: 1px solid var(--rule); border-radius: 10px; padding: 16px; }
+  .toc ol { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .toc ol:last-child { margin-bottom: 0; }
+}
+
+/* ---------- main column ---------- */
+main { min-width: 0; max-width: 820px; }
+.hero { grid-column: 1 / -1; max-width: 820px; }
+.eyebrow { font: 600 12px/1.2 var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: var(--pen); margin: 0 0 12px; }
+h1 { font: 700 clamp(32px, 5vw, 46px)/1.08 var(--f-display); margin: 0 0 16px; text-wrap: balance; letter-spacing: -.01em; }
+.lead { font-size: 18px; color: var(--ink-2); max-width: 62ch; margin: 0 0 16px; }
+.note { font-size: 14px; color: var(--ink-2); max-width: 66ch; }
+
+section.part { margin-top: 56px; }
+h2.part-title { font: 700 30px/1.15 var(--f-display); margin: 0 0 8px; text-wrap: balance; }
+.part-intro { color: var(--ink-2); max-width: 64ch; margin: 0 0 24px; }
+h3 { font: 600 22px/1.25 var(--f-display); margin: 0 0 12px; text-wrap: balance; }
+h4 { font: 600 17px/1.35 var(--f-body); margin: 0; }
+p { margin: 0 0 12px; max-width: 70ch; }
+ul, ol { margin: 0 0 12px; padding-left: 22px; max-width: 70ch; }
+li { margin-bottom: 6px; }
+code { font: 500 .88em var(--f-mono); background: var(--wash); padding: 1px 5px; border-radius: 4px; }
+
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: clamp(18px, 3.5vw, 32px); }
+.method { margin-bottom: 20px; }
+.method .kicker { font: 600 12px/1 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--biro); margin-bottom: 8px; }
+.steps { counter-reset: s; list-style: none; padding-left: 0; }
+.steps > li { counter-increment: s; position: relative; padding-left: 34px; margin-bottom: 10px; }
+.steps > li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--biro); color: var(--biro); font: 600 13px/21px var(--f-body); text-align: center; }
+.trap { background: var(--pen-wash); border-radius: 8px; padding: 12px 16px; margin: 14px 0 0; font-size: 15px; }
+.trap strong { color: var(--pen); }
+
+.scroll { overflow-x: auto; margin: 0 0 14px; }
+table { border-collapse: collapse; font-size: 14.5px; }
+th, td { border: 1px solid var(--rule); padding: 7px 10px; text-align: left; vertical-align: top; }
+th { background: var(--wash); font-weight: 600; }
+td.num, th.num { font-variant-numeric: tabular-nums; }
+table.map { min-width: 620px; width: 100%; }
+table.rel { text-align: center; margin: 8px 0 14px; }
+table.rel th, table.rel td { text-align: center; min-width: 40px; padding: 6px 8px; }
+table.rel td:first-child, table.rel th:first-child { text-align: left; white-space: nowrap; }
+.y { color: var(--ok); font-weight: 700; }
+.n { color: var(--pen); font-weight: 600; opacity: .85; }
+
+/* ---------- tests ---------- */
+.test { margin-bottom: 36px; }
+.test-head { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 12px; margin-bottom: 8px; }
+.test-head h3 { margin: 0; }
+.test-head .meta { color: var(--ink-2); font-size: 14px; }
+.toggle-all { font: 500 14px var(--f-body); color: var(--pen); background: transparent; border: 1.5px solid var(--pen); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.toggle-all:hover { background: var(--pen-wash); }
+
+.problem { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+.problem:last-of-type { border-bottom: 0; }
+.p-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin-bottom: 8px; }
+.p-head .pts { font: 700 17px var(--f-display); }
+.tag { font: 600 11px/1 var(--f-body); letter-spacing: .07em; text-transform: uppercase; color: var(--biro); text-decoration: none; border: 1px solid currentColor; border-radius: 999px; padding: 4px 8px; }
+.tag:hover { background: var(--wash); }
+.prompt { margin-bottom: 10px; }
+
+pre.code { font: 400 14px/1.55 var(--f-mono); background: var(--wash); border-radius: 8px; padding: 12px 16px; overflow-x: auto; margin: 0 0 12px; max-width: 100%; }
+.disp { overflow-x: auto; overflow-y: hidden; margin: 6px 0 12px; padding: 2px 0; }
+@media (max-width: 520px) { .disp { font-size: 13.5px; } }
+
+details.sol { margin-top: 10px; }
+details.sol > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font: italic 500 17px var(--f-display); color: var(--pen); padding: 2px 0; user-select: none; }
+details.sol > summary::-webkit-details-marker { display: none; }
+details.sol > summary::before { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); transition: transform .15s; margin-right: 2px; }
+details.sol[open] > summary::before { transform: rotate(45deg); }
+details.sol > summary .closed-label { display: inline; }
+details.sol > summary .open-label { display: none; }
+details.sol[open] > summary .closed-label { display: none; }
+details.sol[open] > summary .open-label { display: inline; }
+.sol-body { border-top: 1.5px dashed var(--pen); margin-top: 10px; padding-top: 14px; }
+.ans { display: inline-block; margin-top: 4px; padding: 6px 12px; background: var(--pen-wash); border-radius: 6px; }
+.ans b { color: var(--pen); font-weight: 600; margin-right: 6px; }
+.check { color: var(--ink-2); font-size: 14.5px; }
+.read-note { font-size: 14px; color: var(--ink-2); background: var(--wash); border-radius: 8px; padding: 10px 14px; margin: 0 0 12px; max-width: 70ch; }
+
+.aids { margin-top: 18px; border-top: 2px solid var(--ink); padding-top: 14px; }
+.aids h4 { font: 600 14px var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 6px; }
+.aids .disp { text-align: center; font-size: 15px; }
+
+footer.end { margin-top: 56px; color: var(--ink-2); font-size: 14px; border-top: 1px solid var(--rule); padding-top: 16px; }
+mjx-container[display="true"] { margin: .4em 0 !important; }
+mjx-container[jax="SVG"]:not([display="true"]) > svg { max-width: 100%; height: auto; }
+.ans { max-width: 100%; }
+</style>
+
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" async></script>
+
+<div class="layout">
+<header class="hero">
+  <p class="eyebrow">Analýza zložitosti algoritmov · 1. priebežný test</p>
+  <h1>Príprava na test z AZA</h1>
+  <p class="lead">Postup pre každý typ úlohy, štyri minuloročné testy vyriešené krok za krokom a štyri nové cvičné testy v rovnakom štýle a obtiažnosti.</p>
+  <p class="note">Pri riešených testoch sú riešenia rozbalené. Pri cvičných testoch sú skryté: najprv počítaj na papier, potom si riešenie rozbaľ. Všetky presné počty hviezdičiek sú overené spustením kódu pre desiatky hodnôt <i>n</i>.</p>
+</header>
+<nav class="toc" aria-label="Obsah">
+  <h2>Postupy</h2>
+  <ol>
+    <li><a href="#mapa">Ako vyzerá test</a></li>
+    <li><a href="#typ-vztahy">1 · Vzťahy O, o, Ω, ω, Θ, ~</a></li>
+    <li><a href="#typ-cykly">2 · Presný počet (cykly)</a></li>
+    <li><a href="#typ-odhad">3 · Odhad pomocou ~</a></li>
+    <li><a href="#typ-mt">4 · Master theorem</a></li>
+    <li><a href="#typ-rekurzia">5 · Rekurzívna procedúra</a></li>
+    <li><a href="#typ-starsie">Staršie typy úloh</a></li>
+  </ol>
+  <h2>Riešené testy</h2>
+  <ol>
+    <li><a href="#test-starsi">Starší test <small>(6 úloh)</small></a></li>
+    <li><a href="#test-2324">2023/24</a></li>
+    <li><a href="#test-2425">2024/25</a></li>
+    <li><a href="#test-2526">2025/26</a></li>
+  </ol>
+  <h2>Cvičné testy</h2>
+  <ol>
+    <li><a href="#cvicny-1">Cvičný test 1</a></li>
+    <li><a href="#cvicny-2">Cvičný test 2</a></li>
+    <li><a href="#cvicny-3">Cvičný test 3</a></li>
+    <li><a href="#cvicny-4">Cvičný test 4 <small>(starší formát)</small></a></li>
+  </ol>
+</nav>
+
+<main>
+
+
+<!-- ======================= POSTUPY ======================= -->
+<section class="part" id="postupy">
+<h2 class="part-title" id="mapa">Ako vyzerá test</h2>
+<p class="part-intro">Posledné tri roky má test rovnakú kostru: päť úloh, spolu 20–21 bodov. Starší test mal namiesto tabuľky vzťahov tri menšie teoretické úlohy.</p>
+<div class="scroll">
+<table class="map">
+  <thead><tr><th>Typ úlohy</th><th>Starší</th><th>2023/24</th><th>2024/25</th><th>2025/26</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#typ-vztahy">Tabuľka vzťahov O, o, Ω, ω, Θ, ~</a></td><td>zoradenie funkcií 6b, funkcia g 2b, porovnanie algoritmov 2b</td><td class="num">4b</td><td class="num">2+2b</td><td class="num">2+2b</td></tr>
+    <tr><td><a href="#typ-cykly">Presný počet hviezdičiek (cykly)</a></td><td class="num">4b</td><td class="num">3b</td><td class="num">3b</td><td class="num">3b</td></tr>
+    <tr><td><a href="#typ-odhad">Odhad pomocou ~ (vnorené cykly)</a></td><td>—</td><td class="num">4b</td><td class="num">3b</td><td class="num">3b</td></tr>
+    <tr><td><a href="#typ-mt">Master theorem</a></td><td class="num">2+2b</td><td class="num">2+2+1b</td><td class="num">2+2+1b</td><td class="num">2+2+1b</td></tr>
+    <tr><td><a href="#typ-rekurzia">Rekurzívna procedúra → rekurencia</a></td><td class="num">6b</td><td class="num">5b</td><td class="num">5b</td><td class="num">5b</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="part-title" style="margin-top:40px">Postupy podľa typu úlohy</h2>
+<p class="part-intro">Každý postup je napísaný tak, aby si ho vedel zopakovať na teste. Odkazy pri úlohách nižšie vedú späť sem.</p>
+
+<!-- Typ 1 -->
+<div class="sheet method" id="typ-vztahy">
+  <div class="kicker">Typ 1</div>
+  <h3>Vzťahy medzi funkciami cez limitu</h3>
+  <ol class="steps">
+    <li>Vypočítaj \(L=\lim\limits_{n\to\infty}\dfrac{f(n)}{g(n)}\).</li>
+    <li>Podľa hodnoty \(L\) vyplň celý riadok tabuľky naraz:</li>
+  </ol>
+  <div class="scroll">
+  <table class="rel">
+    <thead><tr><th>Limita \(L\)</th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+    <tbody>
+      <tr><td>\(L=0\)</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td><td class="n">×</td><td class="n">×</td></tr>
+      <tr><td>\(0&lt;L&lt;\infty,\ L\neq 1\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td></tr>
+      <tr><td>\(L=1\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>\(L=\infty\)</td><td class="n">×</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Kontrola: \(o\Rightarrow O\), \(\omega\Rightarrow\Omega\), \(\sim\ \Rightarrow\Theta\Rightarrow O\) aj \(\Omega\). Správny riadok má vždy 2, 3 alebo 4 fajky a nikdy nemá naraz \(o\) aj \(\Omega\).</p>
+  <p><b>Triky na výpočet limity</b></p>
+  <ul>
+    <li><b>Dominantný člen.</b> Čitateľa aj menovateľa vydeľ najrýchlejšie rastúcim členom: \(\dfrac{2n^2-\sqrt n}{n^2/2+\ln n}=\dfrac{2-n^{-3/2}}{1/2+\ln n/n^2}\to 4\).</li>
+    <li><b>Hierarchia rastu</b> (z prednášky): \((\ln\ln n)^a \prec (\ln n)^b \prec n^c \prec d^n \prec n! \prec n^n\) pre \(a,b,c&gt;0,\ d&gt;1\). Napr. \((\log_2 n)^2/\sqrt n\to 0\).</li>
+    <li><b>Logaritmy.</b> \(\log_a n=\dfrac{\ln n}{\ln a}\). Rôzne základy dajú podiel rovný konštante \(\neq 1\), teda \(\Theta\), ale nie \(\sim\). Člen \(\log\log n\) je oproti \(\log n\) zanedbateľný.</li>
+    <li><b>Exponenciály \(2^{f}\) a \(2^{g}\).</b> \(\dfrac{2^{f}}{2^{g}}=2^{f-g}\), takže rozhoduje rozdiel \(f-g\), nie podiel. Keď \(f-g\to\infty\), je \(2^f=\omega(2^g)\), aj keď \(f=\Theta(g)\).</li>
+    <li><b>Exponenciály s blízkymi základmi.</b> Vydeľ tou väčšou: \(\dfrac{(10/9)^n}{(11/10)^n}=(100/99)^n\to\infty\).</li>
+    <li><b>L'Hospitalovo pravidlo</b> pri \(\dfrac{(\log n)^k}{n^c}\): derivuj \(k\)-krát, logaritmus vždy zmizne.</li>
+    <li><b>Stirlingova formula:</b> \(n!\sim\sqrt{2\pi n}\,(n/e)^n\), odtiaľ \(\ln n!\sim n\ln n\).</li>
+    <li><b>Funkcia na funkciu:</b> \(f^g=e^{g\ln f}\), potom porovnáš exponenty (napr. \(n^{\ln n}=e^{(\ln n)^2}\)).</li>
+  </ul>
+</div>
+
+<!-- Typ 2 -->
+<div class="sheet method" id="typ-cykly">
+  <div class="kicker">Typ 2</div>
+  <h3>Presný počet hviezdičiek z cyklov</h3>
+  <ol class="steps">
+    <li>Vypíš hodnoty vonkajšej premennej. <code>for (i=a; i&lt;b; ++i)</code> znamená \(i=a,\dots,b-1\), teda \(b-a\) prechodov. Pri <code>&lt;=</code> je horná hranica \(b\).</li>
+    <li>Pre pevné \(i\) spočítaj prechody vnútorného cyklu podľa tabuľky:
+      <div class="scroll" style="margin-top:8px">
+      <table>
+        <thead><tr><th>Zápis cyklu</th><th>Počet prechodov</th></tr></thead>
+        <tbody>
+          <tr><td><code>for (j=a; j&lt;b; ++j)</code></td><td>\(b-a\)</td></tr>
+          <tr><td><code>for (j=a; j&lt;=b; ++j)</code></td><td>\(b-a+1\)</td></tr>
+          <tr><td><code>for (j=a; j&gt;b; --j)</code></td><td>\(a-b\)</td></tr>
+          <tr><td><code>for (j=a; j&gt;=b; --j)</code></td><td>\(a-b+1\)</td></tr>
+        </tbody>
+      </table>
+      </div>
+      Platí, len ak vyjde číslo \(\ge 0\). Over to pre najmenšie a najväčšie \(i\). Ak by vyšlo záporné, cyklus neprebehne a sumu treba rozdeliť (ako príklad p05 z prednášky).</li>
+    <li>Zostav súčet cez všetky \(i\): hviezdičky z printf vo vonkajšom cykle plus hviezdičky vnútorného printf krát počet prechodov vnútorného cyklu. Počítaš hviezdičky, nie volania: <code>printf("***")</code> je 3.</li>
+    <li>Člen pod sumou je lineárny v \(i\), takže je to aritmetický rad: <b>súčet = počet členov · (prvý + posledný) / 2</b>. Prípadne rozdeľ na \(\sum\text{konšt.}+\sum i\) a použi \(\sum_{i=1}^{m}i=\frac{m(m+1)}{2}\).</li>
+    <li>Over vzorec pre najmenšie \(n\), pri ktorom cyklus prebehne (spočítaj ručne), a napíš, od ktorého \(n\) platí.</li>
+  </ol>
+  <p class="trap"><strong>Pasca:</strong> podmienka <code>i&lt;2*n</code> dáva posledné \(i=2n-1\), nie \(2n\). A pri klesajúcom cykle <code>j=n; j&gt;i+2</code> je počet \(n-(i+2)\), nie \(n-i\).</p>
+</div>
+
+<!-- Typ 3 -->
+<div class="sheet method" id="typ-odhad">
+  <div class="kicker">Typ 3</div>
+  <h3>Odhad počtu pomocou ~</h3>
+  <ol class="steps">
+    <li>Napíš súčet rovnako ako pri type 2.</li>
+    <li>Ak má súčet známy vzorec, spočítaj ho presne a vezmi vedúci člen:
+      <div class="disp">\[\sum_{i=1}^n i=\frac{n(n+1)}{2},\qquad \sum_{i=1}^n i^2=\frac{n(n+1)(2n+1)}{6},\qquad \sum_{i=1}^n i^3=\Big(\frac{n(n+1)}{2}\Big)^2.\]</div>
+      Všeobecne \(\sum_{i=1}^n i^k\sim\dfrac{n^{k+1}}{k+1}\) pre \(k&gt;-1\) (platí aj pre \(k=\tfrac12\)).</li>
+    <li>Ak vzorec nepoznáš (odmocnina, \(1/i\), …), použi integrály. Pre neklesajúcu \(f\):
+      <div class="disp">\[\int_0^n f(x)\,dx\;\le\;\sum_{i=1}^n f(i)\;\le\;\int_1^{n+1} f(x)\,dx .\]</div>
+      Pre nerastúcu \(f\) sú nerovnosti otočené: \(\int_1^{n+1}f\le\sum f(i)\le f(1)+\int_1^n f\). Ak sú obe hranice \(\sim\) tá istá funkcia, aj súčet je \(\sim\) jej (veta o minoritnej a majoritnej funkcii).</li>
+    <li>Celé časti \(\lfloor x\rfloor,\lceil x\rceil\) sa od \(x\) líšia o menej ako 1. Za \(n\) členov je to chyba najviac \(n\), čo je zanedbateľné, keď súčet rastie rýchlejšie ako \(n\).</li>
+    <li>Pri trojitých cykloch často pomôže vymeniť poradie súm: spočítaj, koľkokrát sa vyskytne každé \(j\).</li>
+  </ol>
+</div>
+
+<!-- Typ 4 -->
+<div class="sheet method" id="typ-mt">
+  <div class="kicker">Typ 4</div>
+  <h3>Master theorem</h3>
+  <p>\(T(n)=a\,T(n/b)+f(n)\), kde \(a\ge 1,\ b&gt;1\).</p>
+  <ol class="steps">
+    <li>Vypočítaj \(p=\log_b a\). Číselné hodnoty logaritmov dostaneš v pomôckach.</li>
+    <li>Porovnaj \(f(n)\) s \(n^{p}\):
+      <ul style="margin-top:6px">
+        <li><b>MT1:</b> \(f(n)=O(n^{p-\varepsilon})\) pre nejaké \(\varepsilon&gt;0\) \(\Rightarrow T(n)=\Theta(n^{p})\).</li>
+        <li><b>MT2:</b> \(f(n)=\Theta(n^{p}\log^k n)\), \(k\ge 0\) (v pomôckach 2025/26 je \(k&gt;-1\)) \(\Rightarrow T(n)=\Theta(n^{p}\log^{k+1} n)\).</li>
+        <li><b>MT3:</b> \(f(n)=\Omega(n^{p+\varepsilon})\) a zároveň regularita \(a\,f(n/b)\le c\,f(n)\) pre \(c&lt;1\) \(\Rightarrow T(n)=\Theta(f(n))\).</li>
+      </ul></li>
+    <li>Rýchle pravidlo pre \(f(n)=n^d\log^k n\): \(d&lt;p\Rightarrow\) MT1, \(d=p\Rightarrow\) MT2, \(d&gt;p\Rightarrow\) MT3.</li>
+    <li>Zdôvodnenie, ktoré chcú vidieť: konkrétne \(\varepsilon\) a limitu. Pri MT1 napr. \(\varepsilon=(p-d)/2\) a ukážeš \(\lim f(n)/n^{p-\varepsilon}=0\). Pri MT3 \(\varepsilon=(d-p)/2\) a \(\lim f(n)/n^{p+\varepsilon}=\infty\).</li>
+    <li>Regularita pre \(f=n^d\log^k n\) je vždy rovnaký výpočet:
+      <div class="disp">\[a\,f(n/b)=\frac{a}{b^d}\,n^d\log^k\frac nb\;\le\;\frac{a}{b^d}\,f(n),\qquad c=\frac{a}{b^d}&lt;1\iff d&gt;\log_b a .\]</div></li>
+  </ol>
+  <p class="trap"><strong>Pasce:</strong> \(n\log n\) oproti \(n\) nie je „polynomiálne väčšie“, to je MT2 s \(k=1\), nie MT3. Pri tesných exponentoch (napr. \(7/3\) oproti \(\log_2 5\approx 2{,}3219\)) rozhoduje až druhé–tretie desatinné miesto, preto sú v pomôckach čísla.</p>
+</div>
+
+<!-- Typ 5 -->
+<div class="sheet method" id="typ-rekurzia">
+  <div class="kicker">Typ 5</div>
+  <h3>Rekurzívna procedúra → rekurentná rovnica</h3>
+  <ol class="steps">
+    <li>Z kódu zapíš rekurenciu: \(T(n)=\) (hviezdičky vypísané v tele) \(+\) jedno \(T(\cdot)\) za každé rekurzívne volanie. Cyklus <code>for (i=0; i&lt;n; i++) printf("****")</code> dá \(4n\). Zvlášť zapíš počiatočné hodnoty pre vetvy bez rekurzie (pozor na <code>else</code> a <code>n==1</code>).</li>
+    <li>Uprav na tvar \(T(n)-c_1T(n-1)-c_2T(n-2)=f(n)\).</li>
+    <li><b>Homogénna časť:</b> charakteristický polynóm \(x^2-c_1x-c_2\) (pri 1. ráde \(x-c_1\)). Korene \(r_1\neq r_2\) dajú \(d_n=\alpha r_1^n+\beta r_2^n\), dvojnásobný koreň \(r\) dá \(d_n=(\alpha+\beta n)r^n\).</li>
+    <li><b>Partikulárne riešenie:</b> \(f(n)=q(n)s^n\). Z cyklov je vždy \(s=1\) a \(q\) je polynóm. Skúšaš \(b_n=n^m p(n)s^n\), kde \(m\) je násobnosť \(s\) ako koreňa (0, ak koreňom nie je) a \(p\) má rovnaký stupeň ako \(q\). Dosaď a porovnaj koeficienty pri \(n\) a konštanty.
+      <ul style="margin-top:6px">
+        <li>\(T(n)=2T(n-1)+3n\): \(s=1\) nie je koreň \(\Rightarrow b_n=An+B\).</li>
+        <li>\(T(n)=T(n-2)+8n+2\): korene \(\pm1\), \(s=1\) je koreň \(\Rightarrow b_n=n(An+B)\).</li>
+      </ul></li>
+    <li>\(T(n)=b_n+d_n\). Konštanty \(\alpha,\beta\) vypočítaš z počiatočných podmienok (pozor: dosadzuj do celého riešenia, nie len do \(d_n\)).</li>
+    <li>Over pre 2–3 malé \(n\) priamo z kódu. Táto kontrola odhalí väčšinu chýb.</li>
+  </ol>
+  <p class="trap"><strong>Pasca:</strong> pri <code>procB(n-2)</code> sú potrebné dve počiatočné hodnoty, \(T(0)\) aj \(T(1)\), a výsledok obsahuje člen \((-1)^n\). Párne a nepárne \(n\) potom dávajú iný vzorec.</p>
+</div>
+
+<!-- Staršie typy -->
+<div class="sheet method" id="typ-starsie">
+  <div class="kicker">Starší formát</div>
+  <h3>Zoradenie funkcií, konštrukcia g, porovnanie algoritmov</h3>
+  <ul>
+    <li><b>Zoradenie funkcií.</b> Každú funkciu zjednoduš na dominantný člen (\(\tfrac12\ln x^2=\ln x\), \(\ln x^2=2\ln x\)). Zoskup tie, ktoré sú \(\sim\) alebo \(\Theta\), a medzi susednými skupinami dokáž vzťah limitou. Výsledok zapíš reťazcom so symbolmi \(=,\ \sim,\ \Theta,\ \prec\).</li>
+    <li><b>Funkcia \(g\), pre ktorú \(f=O(g)\) a \(f\neq o(g)\).</b> Hľadáš \(g\) s \(0&lt;\lim f/g&lt;\infty\), čiže \(g=\Theta(f)\). Najjednoduchšie je vziať dominantný člen \(f\) bez konštanty.</li>
+    <li><b>Porovnanie algoritmov.</b> Vždy platí najlepší \(\le\) priemerný \(\le\) najhorší prípad. \(O\) je horný odhad, \(\Omega\) dolný, \(\Theta\) oboje. Rozhoduje priemerný a najhorší prípad. Ak je najhorší prípad \(o(n)\), je \(o(n)\) aj priemerný.</li>
+  </ul>
+</div>
+</section>
+
+<!-- ======================= RIEŠENÉ TESTY ======================= -->
+<section class="part" id="riesene">
+<h2 class="part-title">Riešené minuloročné testy</h2>
+<p class="part-intro">Zadania sú prepísané z fotiek, riešenia sú rozbalené. Ku každej úlohe je odkaz na postup.</p>
+
+<!-- ===== Starší test ===== -->
+<div class="sheet test" id="test-starsi">
+  <div class="test-head">
+    <h3>Starší test (rok neuvedený)</h3>
+    <span class="meta">6 úloh · 22 bodov</span>
+    <button class="toggle-all" type="button">Skryť všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (6b)</span><a class="tag" href="#typ-starsie">zoradenie</a></div>
+    <p class="prompt">Zoraďte funkcie podľa asymptotického rastu. Svoje tvrdenie dokážte!<br>\(x+\ln x\); \(\ln(x)\); \(2x+\ln x\); \(2x+\ln x^2\); \(x+\ln(x+1)\); \(\tfrac12\ln(x^2)\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Najprv zjednoduš: \(\tfrac12\ln(x^2)=\ln x\) pre \(x&gt;0\), takže je to tá istá funkcia ako \(\ln x\). Ďalej \(\ln x^2=2\ln x\). Podľa dominantného člena vzniknú tri skupiny: \(\ln x\), \(x\) a \(2x\).</p>
+      <div class="disp">\[\lim_{x\to\infty}\frac{\ln x}{x+\ln x}=\lim\frac{\ln x/x}{1+\ln x/x}=\frac01=0\ \Rightarrow\ \ln x=o(x+\ln x)\]</div>
+      <p>(\(\ln x/x\to0\) z L'Hospitalovho pravidla: \(\frac{1/x}{1}\to0\).)</p>
+      <div class="disp">\[\lim\frac{x+\ln x}{x+\ln(x+1)}=\lim\frac{1+\ln x/x}{1+\ln(x+1)/x}=1\ \Rightarrow\ \sim\]</div>
+      <div class="disp">\[\lim\frac{x+\ln x}{2x+\ln x}=\frac12\ \Rightarrow\ \Theta\ (\text{ale nie }\sim),\qquad \lim\frac{2x+\ln x}{2x+2\ln x}=1\ \Rightarrow\ \sim\]</div>
+      <div class="ans"><b>Výsledok</b>\(\ln x=\tfrac12\ln(x^2)\) \(\;\prec\;x+\ln x\sim x+\ln(x+1)\) \(\;\asymp\;2x+\ln x\sim 2x+\ln x^2\)</div>
+      <p class="check" style="margin-top:8px">\(\prec\) znamená \(o\), \(\asymp\) znamená \(\Theta\). Posledné dve skupiny rastú rovnako rýchlo až na konštantu \(2\).</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (2b)</span><a class="tag" href="#typ-starsie">konštrukcia g</a></div>
+    <p class="prompt">K funkcii \(f(x)=4x^2\) napíšte takú funkciu \(g(x)\), aby platilo \(f(x)=O(g(x))\) a zároveň \(f(x)\neq o(g(x))\). Zdôvodnite!</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Treba \(0&lt;\lim f/g&lt;\infty\). Zvoľ \(g(x)=x^2\):</p>
+      <div class="disp">\[\lim_{x\to\infty}\frac{4x^2}{x^2}=4 .\]</div>
+      <p>Keďže \(0\le 4&lt;\infty\), platí \(f=O(g)\). Limita nie je \(0\), preto \(f\neq o(g)\).</p>
+      <div class="ans"><b>Výsledok</b>\(g(x)=x^2\)</div>
+      <p class="check" style="margin-top:8px">Fungovalo by aj \(4x^2\) alebo \(x^2+x\). Nefunguje napr. \(x^3\): tam \(\lim=0\), teda \(f=o(g)\).</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (2b)</span><a class="tag" href="#typ-starsie">porovnanie algoritmov</a></div>
+    <p class="prompt">Na riešenie problému \(D\) máme dva algoritmy \(A\) a \(B\); \(n\) je veľkosť vstupu v bitoch. O zložitostiach \(A\) v najlepšom, priemernom a najhoršom prípade vieme, že platí \(O(\ln n)\), \(\Omega(1)\) a \(o(n)\). O zložitostiach \(B\) vieme \(\Omega(1)\), \(\Theta(n)\) a \(\Theta(n)\). Ktorý algoritmus by ste odporučili? Zdôvodnite!</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <ul>
+        <li><b>Najhorší prípad:</b> \(A\) je \(o(n)\), rastie teda ostro pomalšie ako \(n\). \(B\) je \(\Theta(n)\), rastie presne ako \(n\).</li>
+        <li><b>Priemerný prípad:</b> priemer je vždy \(\le\) najhorší prípad, takže aj priemer \(A\) je \(o(n)\). Informácia \(\Omega(1)\) je triviálna. Priemer \(B\) je \(\Theta(n)\).</li>
+        <li><b>Najlepší prípad:</b> o \(B\) vieme len triviálne \(\Omega(1)\), takže sa porovnať nedá. Najlepší prípad je ale pri výbere algoritmu najmenej dôležitý.</li>
+      </ul>
+      <div class="ans"><b>Výsledok</b>odporúčam \(A\): v priemernom aj najhoršom prípade je asymptoticky rýchlejší (\(o(n)\) oproti \(\Theta(n)\)).</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=8T(n/2)+n\ln n\), &nbsp; b)&nbsp;\(T(n)=2T(n/2)+2n+4\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>a)</b> \(a=8,\ b=2,\ p=\log_2 8=3\), \(f(n)=n\ln n\). Zvoľ \(\varepsilon=1\):</p>
+      <div class="disp">\[\lim\frac{n\ln n}{n^{3-1}}=\lim\frac{\ln n}{n}=0\ \Rightarrow\ f(n)=O(n^{3-\varepsilon})\ \Rightarrow\ \text{MT1}.\]</div>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^3)\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(a=2,\ b=2,\ p=\log_2 2=1\), \(f(n)=2n+4\).</p>
+      <div class="disp">\[\lim\frac{2n+4}{n}=2\in(0,\infty)\ \Rightarrow\ f(n)=\Theta(n^1\log^0 n)\ \Rightarrow\ \text{MT2 s }k=0.\]</div>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n\log n)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (4b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=7; i&lt;n-1; ++i) {
+    printf("***");
+    for (j=n; j&gt;i+2; --j)
+      printf("**");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Vonkajší cyklus: \(i=7,8,\dots,n-2\), to je \(n-8\) prechodov (pre \(n\ge 9\), inak nič). Vnútorný cyklus: \(j=n,n-1,\dots,i+3\), čiže \(n-(i+2)=n-i-2\) prechodov. Pre \(i\le n-2\) je to \(\ge0\).</p>
+      <div class="disp">\[T(n)=\sum_{i=7}^{n-2}\big(3+2(n-i-2)\big)=3(n-8)+2\sum_{i=7}^{n-2}(n-i-2).\]</div>
+      <p>Substitúcia \(k=n-i-2\): pre \(i=7\) je \(k=n-9\), pre \(i=n-2\) je \(k=0\).</p>
+      <div class="disp">\[\sum_{k=0}^{n-9}k=\frac{(n-9)(n-8)}{2}\quad\Rightarrow\quad T(n)=3(n-8)+(n-9)(n-8)=(n-8)(n-6).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=(n-8)(n-6)=n^2-14n+48\) pre \(n\ge 8\), pre \(n\le 8\) je \(T(n)=0\).</div>
+      <p class="check" style="margin-top:8px">Kontrola \(n=9\): len \(i=7\), vypíše „***“ a vnútorný cyklus (\(9&gt;9\)) neprebehne, spolu 3. Vzorec: \(1\cdot3=3\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">6. (6b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i;
+  if (n&gt;0) {
+    for (i=0; i&lt;n; i++)
+      printf("**");
+    procB(n-1);
+    for (i=0; i&lt;n; i++)
+      printf("*");
+    procB(n-1);
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Pre \(n&gt;0\): \(2n\) hviezdičiek, \(T(n-1)\), \(n\) hviezdičiek, \(T(n-1)\). Pre \(n=0\) nič.</p>
+      <div class="disp">\[T(n)=2T(n-1)+3n,\qquad T(0)=0.\]</div>
+      <p><b>Homogénna časť:</b> \(x-2=0\Rightarrow d_n=\alpha 2^n\).<br><b>Partikulárne:</b> \(f(n)=3n\cdot1^n\), číslo 1 nie je koreň, takže \(m=0\) a \(b_n=An+B\):</p>
+      <div class="disp">\[An+B=2\big(A(n-1)+B\big)+3n\ \Rightarrow\ 0=(A+3)n+(B-2A)\ \Rightarrow\ A=-3,\ B=-6.\]</div>
+      <p>\(T(n)=\alpha2^n-3n-6\), z \(T(0)=0\) vyjde \(\alpha=6\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=6\cdot2^n-3n-6\) \(=3\,(2^{n+1}-n-2)\), \(n\ge0\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(1)=2+0+1+0=3\), vzorec \(12-3-6=3\)&nbsp;✓; \(T(2)=4+3+2+3=12\), vzorec \(24-6-6=12\)&nbsp;✓</p>
+    </div></details>
+  </article>
+</div>
+
+<!-- ===== 2023/24 ===== -->
+<div class="sheet test" id="test-2324">
+  <div class="test-head">
+    <h3>AZA – 1. priebežný test, 2023/24</h3>
+    <span class="meta">5 úloh · 21 bodov</span>
+    <button class="toggle-all" type="button">Skryť všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (4b)</span><a class="tag" href="#typ-vztahy">tabuľka vzťahov</a></div>
+    <p class="prompt">Rozhodnite o každom zo vzťahov \((O,o,\Omega,\omega,\Theta,\sim)\) medzi funkciami \(f,g\), resp. \(F,G\) a svoje tvrdenie zdôvodnite.<br>(a)&nbsp;\(f(n)=2n^2-\sqrt n\), \(g(n)=\dfrac{n^2}{2}+\ln n\). &nbsp; (b)&nbsp;\(F(n)=2^{f(n)},\ G(n)=2^{g(n)}\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>(a)</b> Vydeľ \(n^2\):</p>
+      <div class="disp">\[\lim\frac{2n^2-\sqrt n}{n^2/2+\ln n}=\lim\frac{2-n^{-3/2}}{\tfrac12+\ln n/n^2}=\frac{2}{1/2}=4 .\]</div>
+      <p><b>(b)</b> \(\dfrac{F}{G}=2^{f-g}\), kde \(f-g=\tfrac32n^2-\sqrt n-\ln n\to\infty\), teda \(F/G\to\infty\).</p>
+      <div class="scroll"><table class="rel">
+        <thead><tr><th></th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+        <tbody>
+          <tr><td>(a)&nbsp;\(L=4\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td></tr>
+          <tr><td>(b)&nbsp;\(L=\infty\)</td><td class="n">×</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td></tr>
+        </tbody>
+      </table></div>
+      <p class="check">Pointa: hoci \(f=\Theta(g)\), funkcie \(2^f\) a \(2^g\) už \(\Theta\) nie sú. V exponente rozhoduje rozdiel, nie podiel.</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (3b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=3; i&lt;2*n; ++i) {
+    printf("**");
+    for (j=2; j&lt;i; ++j)
+      printf("***");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=3,\dots,2n-1\): \(2n-3\) prechodov (pre \(n\ge2\)). Vnútorný cyklus \(j=2,\dots,i-1\): \(i-2\) prechodov.</p>
+      <div class="disp">\[T(n)=\sum_{i=3}^{2n-1}\big(2+3(i-2)\big)=2(2n-3)+3\sum_{k=1}^{2n-3}k=2(2n-3)+3\,\frac{(2n-3)(2n-2)}{2}.\]</div>
+      <div class="disp">\[T(n)=(2n-3)\big(2+3(n-1)\big)=(2n-3)(3n-1).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=(2n-3)(3n-1)\) \(=6n^2-11n+3\) pre \(n\ge2\) (pre \(n\le1\) je 0)</div>
+      <p class="check" style="margin-top:8px">Rýchlejšie cez aritmetický rad: členy \(3i-4\) idú od 5 po \(6n-7\), počet \(2n-3\), súčet \((2n-3)\frac{5+6n-7}{2}\). Kontrola \(n=2\): \(i=3\), \(2+3=5\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (4b)</span><a class="tag" href="#typ-odhad">odhad ~</a></div>
+    <p class="prompt">Určte výpočtom čo najpresnejšie (pomocou \(\sim\) notácie) počet hviezdičiek, ktoré vypíše procC.</p>
+<pre class="code">void procC (int n) {
+  int i,j,k;
+  for (i=1; i&lt;=n; ++i) {
+    for (j=0; j&lt;i; ++j)
+      for (k=0; k&lt;i; ++k)
+        printf("**");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Pre pevné \(i\) bežia oba vnútorné cykly \(i\)-krát, spolu \(i\cdot i\) prechodov po 2 hviezdičky.</p>
+      <div class="disp">\[T(n)=\sum_{i=1}^{n}2i^2=2\cdot\frac{n(n+1)(2n+1)}{6}=\frac{n(n+1)(2n+1)}{3}\sim\frac{2n^3}{3}.\]</div>
+      <p>Bez vzorca cez integrály (\(2x^2\) je rastúca):</p>
+      <div class="disp">\[\frac{2n^3}{3}=\int_0^n2x^2dx\le T(n)\le\int_1^{n+1}2x^2dx=\frac{2((n+1)^3-1)}{3}.\]</div>
+      <p>Obe hranice sú \(\sim\frac23n^3\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)\sim\dfrac{2}{3}\,n^3\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2+1b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=5T(n/2)+n^{7/3}\), &nbsp; b)&nbsp;\(T(n)=7T(n/4)+n^{7/5}\), &nbsp; c)&nbsp;\(T(n)=T(n/2)+2\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>a)</b> \(p=\log_2 5\approx2{,}32192\), \(f=n^{7/3}\), \(7/3\approx2{,}333&gt;p\), teda kandidát na MT3. Pre \(\varepsilon=0{,}01\): \(\lim n^{7/3}/n^{p+0{,}01}=\lim n^{0{,}0014}=\infty\), takže \(f=\Omega(n^{p+\varepsilon})\).</p>
+      <p>Regularita: \(5f(n/2)=\dfrac{5}{2^{7/3}}\,n^{7/3}\). Platí \(5&lt;2^{7/3}\iff\log_2 5&lt;7/3\), čo je pravda, takže \(c=5/2^{7/3}\approx0{,}992&lt;1\)&nbsp;✓</p>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^{7/3})\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(p=\log_4 7\approx1{,}40368\), \(f=n^{1{,}4}\), \(1{,}4&lt;p\), teda MT1. Pre \(\varepsilon=0{,}003\): \(\lim n^{1{,}4}/n^{p-0{,}003}=\lim n^{-0{,}0007}=0\), takže \(f=O(n^{p-\varepsilon})\).</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n^{\log_4 7})\approx\Theta(n^{1{,}4037})\)</div>
+      <p style="margin-top:14px"><b>c)</b> \(a=1,\ b=2,\ p=\log_2 1=0\), \(n^0=1\). \(f=2=\Theta(n^0\log^0 n)\), teda MT2 s \(k=0\) (binárne vyhľadávanie).</p>
+      <div class="ans"><b>c)</b>\(T(n)=\Theta(\log n)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (5b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i;
+  if (n&gt;0) {
+    if (n==1) printf("*");
+    else {
+      printf("**");
+      procB(n-2);
+      for (i=0; i&lt;n; i++)
+        printf("********");
+    }
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=T(n-2)+8n+2\ \ (n\ge2),\qquad T(0)=0,\ T(1)=1.\]</div>
+      <p><b>Homogénna časť:</b> \(x^2-1=0\), korene \(r=\pm1\), teda \(d_n=\alpha+\beta(-1)^n\).<br><b>Partikulárne:</b> \(f(n)=(8n+2)\cdot1^n\) a 1 je jednoduchý koreň, takže \(m=1\), \(b_n=n(An+B)=An^2+Bn\):</p>
+      <div class="disp">\[An^2+Bn-A(n-2)^2-B(n-2)=8n+2\ \Rightarrow\ 4An-4A+2B=8n+2\ \Rightarrow\ A=2,\ B=5.\]</div>
+      <p>\(T(n)=2n^2+5n+\alpha+\beta(-1)^n\). Z \(T(0)=0\): \(\alpha+\beta=0\). Z \(T(1)=1\): \(7+\alpha-\beta=1\). Odtiaľ \(\alpha=-3,\ \beta=3\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=2n^2+5n-3+3(-1)^n\): párne \(n\) dáva \(2n^2+5n\), nepárne \(2n^2+5n-6\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(2)=2+0+16=18\)&nbsp;✓, \(T(3)=2+1+24=27\)&nbsp;✓. Pre párne \(n=2k\) aj rozvinutím: \(\sum_{j=1}^{k}(16j+2)=8k^2+10k=2n^2+5n\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <div class="aids">
+    <h4>Pomôcky na teste</h4>
+    <div class="disp">\(\log_5 2=0{,}43067\ldots,\ \log_2 5=2{,}32192\ldots,\ 7/3=2{,}33\ldots,\ \log_7 4=0{,}7124\ldots,\ \log_4 7=1{,}40367\ldots,\ 7/5=1{,}4\)</div>
+  </div>
+</div>
+
+<!-- ===== 2024/25 ===== -->
+<div class="sheet test" id="test-2425">
+  <div class="test-head">
+    <h3>AZA – 1. priebežný test, 2024/25</h3>
+    <span class="meta">5 úloh · 20 bodov</span>
+    <button class="toggle-all" type="button">Skryť všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (2+2b)</span><a class="tag" href="#typ-vztahy">tabuľka vzťahov</a></div>
+    <p class="prompt">Rozhodnite o každom zo vzťahov \((O,o,\Omega,\omega,\Theta,\sim)\) medzi funkciami \(f,g\), resp. \(F,G\) a svoje tvrdenie zdôvodnite.<br>(a)&nbsp;\(f(n)=\log_3 n+\log_3\log_3 n\), \(g(n)=\dfrac{\ln n}{\ln 2}+100\). &nbsp; (b)&nbsp;\(F(n)=\sqrt[3]{n}\), \(G(n)=\sqrt[4]{n}\,\ln n\).</p>
+    <p class="read-note">Fotka je v (a) rozmazaná. Čítam základ 3 pri \(f\) a \(\ln n/\ln 2\) pri \(g\). Ak by \(f\) malo základ 2, vyšla by limita 1 a platilo by aj \(\sim\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>(a)</b> \(\log_3\log_3 n=o(\log_3 n)\) a \(g(n)=\log_2 n+100\). Vydeľ \(\log_3 n=\ln n/\ln 3\):</p>
+      <div class="disp">\[L=\lim\frac{1+\frac{\log_3\log_3 n}{\log_3 n}}{\frac{\ln 3}{\ln 2}+\frac{100}{\log_3 n}}=\frac{1}{\ln3/\ln2}=\frac{\ln 2}{\ln 3}\approx0{,}631 .\]</div>
+      <p><b>(b)</b> \(\dfrac{F}{G}=\dfrac{n^{1/3}}{n^{1/4}\ln n}=\dfrac{n^{1/12}}{\ln n}\). L'Hospital: \(\dfrac{\frac1{12}n^{-11/12}}{1/n}=\dfrac{n^{1/12}}{12}\to\infty\).</p>
+      <div class="scroll"><table class="rel">
+        <thead><tr><th></th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+        <tbody>
+          <tr><td>(a)&nbsp;\(L=\ln2/\ln3\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td></tr>
+          <tr><td>(b)&nbsp;\(L=\infty\)</td><td class="n">×</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td></tr>
+        </tbody>
+      </table></div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (3b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=2; i&lt;3*n; ++i) {
+    printf("***");
+    for (j=i-1; j&lt;2*i; ++j)
+      printf("**");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=2,\dots,3n-1\): \(3n-2\) prechodov (\(n\ge1\)). Vnútorný cyklus: \(2i-(i-1)=i+1\) prechodov. Člen sumy je \(3+2(i+1)=2i+5\).</p>
+      <div class="disp">\[T(n)=\sum_{i=2}^{3n-1}(2i+5)=(3n-2)\cdot\frac{9+(6n+3)}{2}=(3n-2)(3n+6).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=9n^2+12n-12\) pre \(n\ge1\)</div>
+      <p class="check" style="margin-top:8px">Kontrola \(n=1\): \(i=2\), \(3+2\cdot3=9\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (3b)</span><a class="tag" href="#typ-odhad">odhad ~</a></div>
+    <p class="prompt">Určte výpočtom čo najpresnejšie (pomocou \(\sim\) notácie) počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i,j;
+  for (i=1; i&lt;=n; ++i) {
+    for (j=1; j&lt;=sqrt(i); ++j)
+      printf("***");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Vnútorný cyklus beží \(\lfloor\sqrt i\rfloor\)-krát, takže \(T(n)=3\sum_{i=1}^n\lfloor\sqrt i\rfloor\). Označ \(S=\sum_{i=1}^n\sqrt i\). Keďže \(\sqrt i-1&lt;\lfloor\sqrt i\rfloor\le\sqrt i\), platí \(3(S-n)&lt;T(n)\le3S\).</p>
+      <p>\(\sqrt x\) je rastúca, preto</p>
+      <div class="disp">\[\tfrac23n^{3/2}=\int_0^n\sqrt x\,dx\;\le\;S\;\le\;\int_1^{n+1}\sqrt x\,dx=\tfrac23\big((n+1)^{3/2}-1\big).\]</div>
+      <p>Obe hranice sú \(\sim\frac23n^{3/2}\), teda aj \(S\sim\frac23n^{3/2}\). Člen \(n\) je \(o(n^{3/2})\), takže zaokrúhlenie nadol nič nemení.</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)\sim 3\cdot\tfrac23n^{3/2}=2n^{3/2}=2n\sqrt n\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2+1b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master Theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=8T(n/3)+n^2\log n\), &nbsp; b)&nbsp;\(T(n)=2T(n/4)+\sqrt n\log n\), &nbsp; c)&nbsp;\(T(n)=3T(n/3)+\sqrt n\log n\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>a)</b> \(p=\log_3 8\approx1{,}893\), \(d=2&gt;p\), teda MT3. Pre \(\varepsilon=0{,}1\): \(\lim\frac{n^2\log n}{n^{1{,}993}}=\infty\). Regularita:</p>
+      <div class="disp">\[8\,(n/3)^2\log(n/3)=\tfrac89n^2(\log n-\log3)\le\tfrac89n^2\log n,\qquad c=\tfrac89&lt;1.\]</div>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^2\log n)\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(p=\log_4 2=\tfrac12\), \(f=\sqrt n\log n=\Theta(n^{1/2}\log^1 n)\), teda MT2 s \(k=1\).</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(\sqrt n\log^2 n)\)</div>
+      <p style="margin-top:14px"><b>c)</b> \(p=\log_3 3=1\), \(f=\sqrt n\log n\). Pre \(\varepsilon=\tfrac14\): \(\lim\frac{\sqrt n\log n}{n^{3/4}}=\lim\frac{\log n}{n^{1/4}}=0\), teda MT1.</p>
+      <div class="ans"><b>c)</b>\(T(n)=\Theta(n)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (5b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procC.</p>
+<pre class="code">void procC (int n) {
+  int i;
+  if (n&gt;1) {
+    procC(n-2);
+    for (i=0; i&lt;n; i++)
+      printf("****");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=T(n-2)+4n\ \ (n\ge2),\qquad T(0)=T(1)=0.\]</div>
+      <p>\(d_n=\alpha+\beta(-1)^n\). Číslo 1 je koreň, preto \(b_n=n(An+B)\): \(4An-4A+2B=4n\Rightarrow A=1,\ B=2\), teda \(b_n=n^2+2n\).</p>
+      <p>\(T(n)=n^2+2n+\alpha+\beta(-1)^n\). Z \(T(0)=0\): \(\alpha+\beta=0\). Z \(T(1)=0\): \(3+\alpha-\beta=0\). Odtiaľ \(\alpha=-\tfrac32,\ \beta=\tfrac32\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=n^2+2n-\tfrac32+\tfrac32(-1)^n\): párne \(n\) dáva \(n^2+2n\), nepárne \(n^2+2n-3\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(2)=8\)&nbsp;✓, \(T(3)=T(1)+12=12\)&nbsp;✓, \(T(4)=8+16=24\)&nbsp;✓. Rozvinutím pre \(n=2k\): \(4(2+4+\dots+2k)=4k(k+1)=n(n+2)\)&nbsp;✓</p>
+    </div></details>
+  </article>
+</div>
+
+<!-- ===== 2025/26 ===== -->
+<div class="sheet test" id="test-2526">
+  <div class="test-head">
+    <h3>AZA – 1. priebežný test, 2025/26</h3>
+    <span class="meta">5 úloh · 20 bodov</span>
+    <button class="toggle-all" type="button">Skryť všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (2+2b)</span><a class="tag" href="#typ-vztahy">tabuľka vzťahov</a></div>
+    <p class="prompt">Rozhodnite o každom zo vzťahov \((O,o,\Omega,\omega,\Theta,\sim)\) medzi funkciami \(f,g\), resp. \(F,G\) a svoje tvrdenie zdôvodnite výpočtom príslušnej limity.<br>(a)&nbsp;\(f(n)=\big(\tfrac{10}{9}\big)^n+\ln n\), \(g(n)=\big(\tfrac{11}{10}\big)^n+n\). &nbsp; (b)&nbsp;\(F(n)=(\log_2 n)^2\), \(G(n)=\sqrt n\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>(a)</b> Vydeľ \((11/10)^n\). Keďže \(\frac{10}{9}\cdot\frac{10}{11}=\frac{100}{99}&gt;1\) a exponenciála prerastie každý polynóm aj logaritmus:</p>
+      <div class="disp">\[\frac{f}{g}=\frac{(100/99)^n+\ln n/(1{,}1)^n}{1+n/(1{,}1)^n}\ \longrightarrow\ \frac{\infty+0}{1+0}=\infty .\]</div>
+      <p><b>(b)</b> Dvakrát L'Hospital:</p>
+      <div class="disp">\[\lim\frac{(\log_2 n)^2}{n^{1/2}}=\lim\frac{2\log_2 n\cdot\frac{1}{n\ln2}}{\frac12n^{-1/2}}=\frac{4}{\ln2}\lim\frac{\log_2 n}{n^{1/2}}=\frac{8}{\ln^2 2}\lim\frac{1}{n^{1/2}}=0 .\]</div>
+      <div class="scroll"><table class="rel">
+        <thead><tr><th></th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+        <tbody>
+          <tr><td>(a)&nbsp;\(L=\infty\)</td><td class="n">×</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td></tr>
+          <tr><td>(b)&nbsp;\(L=0\)</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td><td class="n">×</td><td class="n">×</td></tr>
+        </tbody>
+      </table></div>
+      <p class="check">Pasca v (a): \(10/9\approx1{,}111\) a \(11/10=1{,}1\) sú blízko, ale rôzne základy exponenciál dajú vždy \(o\) alebo \(\omega\).</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (3b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=4; i&lt;5*n-2; ++i) {
+    printf("**");
+    for (j=i+2; j&lt;3*i; ++j)
+      printf("****");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=4,\dots,5n-3\): \(5n-6\) prechodov (\(n\ge2\)). Vnútorný cyklus: \(3i-(i+2)=2i-2\) prechodov (pre \(i\ge4\) kladné). Člen: \(2+4(2i-2)=8i-6\), prvý (\(i=4\)) je 26, posledný (\(i=5n-3\)) je \(40n-30\).</p>
+      <div class="disp">\[T(n)=\sum_{i=4}^{5n-3}(8i-6)=(5n-6)\cdot\frac{26+40n-30}{2}=(5n-6)(20n-2).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=100n^2-130n+12\) pre \(n\ge2\)</div>
+      <p class="check" style="margin-top:8px">Kontrola \(n=2\): \(i=4..7\), \(26+34+42+50=152\), vzorec \(400-260+12=152\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (3b)</span><a class="tag" href="#typ-odhad">odhad ~</a></div>
+    <p class="prompt">Určte výpočtom čo najpresnejšie (pomocou \(\sim\) notácie) počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i,j;
+  for (i=1; i&lt;=n; ++i) {
+    for (j=1; j&lt;=i*i*i; ++j)
+      printf("****");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=\sum_{i=1}^n4i^3=4\Big(\frac{n(n+1)}{2}\Big)^2=n^2(n+1)^2\sim n^4 .\]</div>
+      <p>Cez integrály:</p>
+      <div class="disp">\[n^4=\int_0^n4x^3dx\le T(n)\le\int_1^{n+1}4x^3dx=(n+1)^4-1,\]</div>
+      <p>obe hranice sú \(\sim n^4\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)\sim n^4\) (presne \(n^2(n+1)^2\))</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2+1b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master Theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=8T(n/3)+(n\log n)^2\), &nbsp; b)&nbsp;\(T(n)=9T(n/3)+(n\log n)^2\), &nbsp; c)&nbsp;\(T(n)=10T(n/3)+(n\log n)^2\).</p>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Všade \(f(n)=n^2\log^2 n\) a \(b=3\). Mení sa len \(a\), a tým aj prípad MT.</p>
+      <p><b>a)</b> \(p=\log_3 8\approx1{,}893&lt;2\), teda MT3, \(\varepsilon=0{,}1\). Regularita: \(8f(n/3)=\frac89n^2\log^2\frac n3\le\frac89f(n)\), \(c=\frac89\)&nbsp;✓</p>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^2\log^2 n)\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(p=\log_3 9=2\), \(f=\Theta(n^2\log^2 n)\), teda MT2 s \(k=2\).</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n^2\log^3 n)\)</div>
+      <p style="margin-top:14px"><b>c)</b> \(p=\log_3 10\approx2{,}096&gt;2\), teda MT1. Pre \(\varepsilon=0{,}05\): \(\lim\frac{n^2\log^2 n}{n^{2{,}046}}=\lim\frac{\log^2 n}{n^{0{,}046}}=0\).</p>
+      <div class="ans"><b>c)</b>\(T(n)=\Theta(n^{\log_3 10})\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (5b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procC.</p>
+<pre class="code">void procC (int n) {
+  int i;
+  if (n&gt;1) {
+    procC(n-2);
+    procC(n-1);
+    procC(n-2);
+    for (i=0; i&lt;n; i++)
+      printf("****");
+  }
+}</pre>
+    <details class="sol" open><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=T(n-1)+2T(n-2)+4n\ \ (n\ge2),\qquad T(0)=T(1)=0.\]</div>
+      <p><b>Homogénna časť:</b> \(x^2-x-2=(x-2)(x+1)\), teda \(d_n=\alpha2^n+\beta(-1)^n\).<br><b>Partikulárne:</b> 1 nie je koreň, \(b_n=An+B\):</p>
+      <div class="disp">\[An+B-\big(A(n-1)+B\big)-2\big(A(n-2)+B\big)=-2An+5A-2B=4n\ \Rightarrow\ A=-2,\ B=-5.\]</div>
+      <p>\(T(n)=\alpha2^n+\beta(-1)^n-2n-5\). Z \(T(0)=0\): \(\alpha+\beta=5\). Z \(T(1)=0\): \(2\alpha-\beta=7\). Odtiaľ \(\alpha=4,\ \beta=1\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=2^{n+2}+(-1)^n-2n-5\), \(n\ge0\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(2)=8\)&nbsp;✓, \(T(3)=0+8+0+12=20\)&nbsp;✓, \(T(4)=8+20+8+16=52\)&nbsp;✓</p>
+    </div></details>
+  </article>
+</div>
+</section>
+
+<!-- ======================= CVIČNÉ TESTY ======================= -->
+<section class="part" id="cvicne">
+<h2 class="part-title">Cvičné testy</h2>
+<p class="part-intro">Testy 1–3 majú formát 2023–2026 (5 úloh, 20 bodov), test 4 kopíruje starší formát so 6 úlohami. Typy úloh, bodovanie aj pasce zodpovedajú minuloročným testom. Riešenia sú skryté.</p>
+
+<!-- ===== Cvičný 1 ===== -->
+<div class="sheet test" id="cvicny-1">
+  <div class="test-head">
+    <h3>Cvičný test 1</h3>
+    <span class="meta">5 úloh · 20 bodov</span>
+    <button class="toggle-all" type="button">Ukázať všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (2+2b)</span><a class="tag" href="#typ-vztahy">tabuľka vzťahov</a></div>
+    <p class="prompt">Rozhodnite o každom zo vzťahov \((O,o,\Omega,\omega,\Theta,\sim)\) medzi funkciami \(f,g\), resp. \(F,G\) a svoje tvrdenie zdôvodnite výpočtom príslušnej limity.<br>(a)&nbsp;\(f(n)=3n^3-n^2\log_2 n\), \(g(n)=\dfrac{n^3}{3}+5n\). &nbsp; (b)&nbsp;\(F(n)=\log_2 f(n)\), \(G(n)=\log_2 g(n)\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>(a)</b> Vydeľ \(n^3\):</p>
+      <div class="disp">\[\lim\frac{3-\log_2 n/n}{\tfrac13+5/n^2}=\frac{3}{1/3}=9 .\]</div>
+      <p><b>(b)</b> \(F=\log_2\big(n^3(3-\tfrac{\log_2 n}{n})\big)\) \(=3\log_2 n+\log_2(3-o(1))\) a \(G=3\log_2 n+\log_2(\tfrac13+o(1))\). Pridané členy idú ku konštantám \(\pm\log_2 3\), oproti \(3\log_2 n\) sú zanedbateľné:</p>
+      <div class="disp">\[\lim\frac{F}{G}=\lim\frac{3\log_2 n+\log_2(3-\frac{\log_2 n}{n})}{3\log_2 n+\log_2(\frac13+\frac{5}{n^2})}=1 .\]</div>
+      <div class="scroll"><table class="rel">
+        <thead><tr><th></th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+        <tbody>
+          <tr><td>(a)&nbsp;\(L=9\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td></tr>
+          <tr><td>(b)&nbsp;\(L=1\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td></tr>
+        </tbody>
+      </table></div>
+      <p class="check">Pointa: logaritmus zmaže konštantný násobok (z \(\Theta\) urobí \(\sim\)). Exponenciála v teste 2023/24 robila opak.</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (3b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=5; i&lt;4*n; ++i) {
+    printf("***");
+    for (j=i; j&lt;2*i+1; ++j)
+      printf("**");
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=5,\dots,4n-1\): \(4n-5\) prechodov (\(n\ge2\)). Vnútorný cyklus: \((2i+1)-i=i+1\) prechodov. Člen: \(3+2(i+1)=2i+5\), prvý 15, posledný \(8n+3\).</p>
+      <div class="disp">\[T(n)=(4n-5)\cdot\frac{15+8n+3}{2}=(4n-5)(4n+9).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=16n^2+16n-45\) pre \(n\ge2\)</div>
+      <p class="check" style="margin-top:8px">Kontrola \(n=2\): \(i=5,6,7\), \(15+17+19=51\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (3b)</span><a class="tag" href="#typ-odhad">odhad ~</a></div>
+    <p class="prompt">Určte výpočtom čo najpresnejšie (pomocou \(\sim\) notácie) počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i,j,k;
+  for (i=1; i&lt;=n; ++i)
+    for (j=1; j&lt;=i; ++j)
+      for (k=j; k&lt;=i; ++k)
+        printf("**");
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Najvnútornejší cyklus: \(k=j,\dots,i\), teda \(i-j+1\) prechodov. Pre pevné \(i\): \(\sum_{j=1}^{i}(i-j+1)\) \(=i+(i-1)+\dots+1\) \(=\frac{i(i+1)}{2}\).</p>
+      <div class="disp">\[T(n)=2\sum_{i=1}^{n}\frac{i(i+1)}{2}=\sum_{i=1}^n(i^2+i)=\frac{n(n+1)(2n+1)}{6}+\frac{n(n+1)}{2}=\frac{n(n+1)(n+2)}{3}.\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)\sim\dfrac{n^3}{3}\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2+1b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master Theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=4T(n/2)+n\log n\), &nbsp; b)&nbsp;\(T(n)=4T(n/2)+n^2\log n\), &nbsp; c)&nbsp;\(T(n)=4T(n/2)+n^3\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Všade \(p=\log_2 4=2\).</p>
+      <p><b>a)</b> \(d=1&lt;2\), \(\varepsilon=\tfrac12\): \(\lim\frac{n\log n}{n^{3/2}}=\lim\frac{\log n}{\sqrt n}=0\), teda MT1.</p>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^2)\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(f=\Theta(n^2\log^1 n)\), teda MT2 s \(k=1\).</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n^2\log^2 n)\)</div>
+      <p style="margin-top:14px"><b>c)</b> \(d=3&gt;2\), \(\varepsilon=1\). Regularita: \(4(n/2)^3=\frac12n^3\), \(c=\frac12&lt;1\)&nbsp;✓, teda MT3.</p>
+      <div class="ans"><b>c)</b>\(T(n)=\Theta(n^3)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (5b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procC.</p>
+<pre class="code">void procC (int n) {
+  int i;
+  if (n&gt;0) {
+    procC(n-1);
+    for (i=0; i&lt;n; i++)
+      printf("**");
+    procC(n-1);
+    printf("*");
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=2T(n-1)+2n+1,\qquad T(0)=0.\]</div>
+      <p>\(d_n=\alpha2^n\). Partikulárne \(b_n=An+B\):</p>
+      <div class="disp">\[An+B=2A(n-1)+2B+2n+1\ \Rightarrow\ 0=(A+2)n+(B-2A+1)\ \Rightarrow\ A=-2,\ B=-5.\]</div>
+      <p>\(T(n)=\alpha2^n-2n-5\), z \(T(0)=0\) vyjde \(\alpha=5\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=5\cdot2^n-2n-5\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(1)=0+2+0+1=3\)&nbsp;✓, \(T(2)=3+4+3+1=11\), vzorec \(20-4-5=11\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <div class="aids">
+    <h4>Pomôcky</h4>
+    <div class="disp">\[f(n)=q(n)s^n,\quad b_n=n^m p(n)s^n\]</div>
+    <div class="disp">\[f(n)=O(n^{\log_b a-\varepsilon})\ldots\Theta(n^{\log_b a})\qquad f(n)=\Theta(n^{\log_b a}\log^k n)\ldots\Theta(n^{\log_b a}\log^{k+1}n),\ k&gt;-1\]</div>
+    <div class="disp">\[f(n)=\Omega(n^{\log_b a+\varepsilon});\ af(n/b)\le cf(n),\ c&lt;1\ \ldots\ \Theta(f(n))\]</div>
+  </div>
+</div>
+
+<!-- ===== Cvičný 2 ===== -->
+<div class="sheet test" id="cvicny-2">
+  <div class="test-head">
+    <h3>Cvičný test 2</h3>
+    <span class="meta">5 úloh · 20 bodov</span>
+    <button class="toggle-all" type="button">Ukázať všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (2+2b)</span><a class="tag" href="#typ-vztahy">tabuľka vzťahov</a></div>
+    <p class="prompt">Rozhodnite o každom zo vzťahov \((O,o,\Omega,\omega,\Theta,\sim)\) medzi funkciami \(f,g\), resp. \(F,G\) a svoje tvrdenie zdôvodnite výpočtom príslušnej limity.<br>(a)&nbsp;\(f(n)=n\log_2 n+n\), \(g(n)=\log_2(n!)\). &nbsp; (b)&nbsp;\(F(n)=3^{\log_2 n}\), \(G(n)=n^{3/2}\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>(a)</b> Zo Stirlingovej formuly \(n!\sim\sqrt{2\pi n}(n/e)^n\):</p>
+      <div class="disp">\[\log_2 n!=n\log_2 n-n\log_2 e+\tfrac12\log_2(2\pi n)+o(1).\]</div>
+      <p>Vydeľ \(n\log_2 n\): \(\dfrac{g}{n\log_2 n}\to1\) a \(\dfrac{f}{n\log_2 n}=1+\dfrac{1}{\log_2 n}\to1\), takže \(L=1\).</p>
+      <p><b>(b)</b> Prepíš \(3=2^{\log_2 3}\):</p>
+      <div class="disp">\[3^{\log_2 n}=\big(2^{\log_2 3}\big)^{\log_2 n}=\big(2^{\log_2 n}\big)^{\log_2 3}=n^{\log_2 3}\approx n^{1{,}585}.\]</div>
+      <p>Potom \(\dfrac FG=n^{\log_2 3-1{,}5}=n^{0{,}085}\to\infty\).</p>
+      <div class="scroll"><table class="rel">
+        <thead><tr><th></th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+        <tbody>
+          <tr><td>(a)&nbsp;\(L=1\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td></tr>
+          <tr><td>(b)&nbsp;\(L=\infty\)</td><td class="n">×</td><td class="n">×</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td></tr>
+        </tbody>
+      </table></div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (3b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=1; i&lt;=2*n; ++i) {
+    printf("*");
+    for (j=3*n; j&gt;i; --j)
+      printf("***");
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=1,\dots,2n\): \(2n\) prechodov. Klesajúci cyklus \(j=3n,\dots,i+1\): \(3n-i\) prechodov (kladné, lebo \(i\le2n\)).</p>
+      <div class="disp">\[T(n)=\sum_{i=1}^{2n}\big(1+3(3n-i)\big)=2n+3\Big(6n^2-\frac{2n(2n+1)}{2}\Big)=2n+3(4n^2-n).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=12n^2-n\) pre \(n\ge0\)</div>
+      <p class="check" style="margin-top:8px">Kontrola \(n=1\): \(i=1\): \(1+6=7\); \(i=2\): \(1+3=4\); spolu 11&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (3b)</span><a class="tag" href="#typ-odhad">odhad ~</a></div>
+    <p class="prompt">Určte výpočtom čo najpresnejšie (pomocou \(\sim\) notácie) počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i,j,k;
+  for (i=1; i&lt;=n; ++i)
+    for (j=i; j&lt;=n; ++j)
+      for (k=1; k&lt;=j; ++k)
+        printf("***");
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(T(n)=3\sum_{i=1}^n\sum_{j=i}^{n}j\). Vymeň poradie súm: dvojice \(1\le i\le j\le n\), pre pevné \(j\) je \(j\) možných \(i\).</p>
+      <div class="disp">\[T(n)=3\sum_{j=1}^{n}j\cdot j=3\cdot\frac{n(n+1)(2n+1)}{6}=\frac{n(n+1)(2n+1)}{2}.\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)\sim n^3\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2+1b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master Theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=3T(n/2)+n\log n\), &nbsp; b)&nbsp;\(T(n)=16T(n/4)+n^2\), &nbsp; c)&nbsp;\(T(n)=3T(n/9)+n\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>a)</b> \(p=\log_2 3\approx1{,}585\), \(d=1&lt;p\). Pre \(\varepsilon=0{,}5\): \(\lim\frac{n\log n}{n^{1{,}085}}=\lim\frac{\log n}{n^{0{,}085}}=0\), teda MT1.</p>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^{\log_2 3})\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(p=\log_4 16=2\), \(f=n^2=\Theta(n^2\log^0 n)\), teda MT2.</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n^2\log n)\)</div>
+      <p style="margin-top:14px"><b>c)</b> \(p=\log_9 3=\tfrac12\), \(d=1&gt;\tfrac12\), \(\varepsilon=\tfrac12\). Regularita: \(3\cdot\frac n9=\frac13n\), \(c=\frac13\)&nbsp;✓, teda MT3.</p>
+      <div class="ans"><b>c)</b>\(T(n)=\Theta(n)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (5b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procC.</p>
+<pre class="code">void procC (int n) {
+  int i;
+  if (n&gt;0) {
+    procC(n-1);
+    for (i=0; i&lt;n; i++)
+      printf("**");
+    procC(n-1);
+    procC(n-1);
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=3T(n-1)+2n,\qquad T(0)=0.\]</div>
+      <p>\(d_n=\alpha3^n\). Partikulárne \(b_n=An+B\):</p>
+      <div class="disp">\[An+B=3A(n-1)+3B+2n\ \Rightarrow\ 0=(2A+2)n+(2B-3A)\ \Rightarrow\ A=-1,\ B=-\tfrac32.\]</div>
+      <p>\(T(n)=\alpha3^n-n-\tfrac32\), z \(T(0)=0\) vyjde \(\alpha=\tfrac32\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=\dfrac{3^{n+1}-2n-3}{2}\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(1)=2\)&nbsp;✓, \(T(2)=3\cdot2+4=10\), vzorec \(\frac{27-4-3}{2}=10\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <div class="aids">
+    <h4>Pomôcky</h4>
+    <div class="disp">\(\log_2 3=1{,}58496\ldots,\quad \log_9 3=0{,}5,\quad n!\sim\sqrt{2\pi n}\,(n/e)^n\)</div>
+    <div class="disp">\[f(n)=q(n)s^n,\quad b_n=n^m p(n)s^n\]</div>
+  </div>
+</div>
+
+<!-- ===== Cvičný 3 ===== -->
+<div class="sheet test" id="cvicny-3">
+  <div class="test-head">
+    <h3>Cvičný test 3</h3>
+    <span class="meta">5 úloh · 20 bodov</span>
+    <button class="toggle-all" type="button">Ukázať všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (2+2b)</span><a class="tag" href="#typ-vztahy">tabuľka vzťahov</a></div>
+    <p class="prompt">Rozhodnite o každom zo vzťahov \((O,o,\Omega,\omega,\Theta,\sim)\) medzi funkciami \(f,g\), resp. \(F,G\) a svoje tvrdenie zdôvodnite výpočtom príslušnej limity.<br>(a)&nbsp;\(f(n)=\ln(n^3+2n)\), \(g(n)=\log_2 n\). &nbsp; (b)&nbsp;\(F(n)=n!\), \(G(n)=n^n\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>(a)</b> \(\ln(n^3+2n)=3\ln n+\ln(1+2/n^2)\) a \(\log_2 n=\ln n/\ln2\):</p>
+      <div class="disp">\[L=\lim\frac{3\ln n+\ln(1+2/n^2)}{\ln n/\ln 2}=3\ln2\approx2{,}079 .\]</div>
+      <p><b>(b)</b> \(\dfrac{n!}{n^n}=\dfrac1n\cdot\dfrac2n\cdots\dfrac nn\le\dfrac1n\to0\). (Alebo zo Stirlinga: \(\frac{n!}{n^n}\sim\frac{\sqrt{2\pi n}}{e^n}\to0\).)</p>
+      <div class="scroll"><table class="rel">
+        <thead><tr><th></th><th>\(O\)</th><th>\(o\)</th><th>\(\Omega\)</th><th>\(\omega\)</th><th>\(\Theta\)</th><th>\(\sim\)</th></tr></thead>
+        <tbody>
+          <tr><td>(a)&nbsp;\(L=3\ln2\)</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td><td class="y">✓</td><td class="n">×</td></tr>
+          <tr><td>(b)&nbsp;\(L=0\)</td><td class="y">✓</td><td class="y">✓</td><td class="n">×</td><td class="n">×</td><td class="n">×</td><td class="n">×</td></tr>
+        </tbody>
+      </table></div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (3b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=n; i&lt;3*n; ++i) {
+    printf("**");
+    for (j=0; j&lt;i-n; ++j)
+      printf("*****");
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=n,\dots,3n-1\): \(2n\) prechodov. Vnútorný cyklus: \(i-n\) prechodov. Substitúcia \(k=i-n\), \(k=0,\dots,2n-1\):</p>
+      <div class="disp">\[T(n)=2\cdot2n+5\sum_{k=0}^{2n-1}k=4n+5\cdot\frac{(2n-1)2n}{2}=4n+5n(2n-1).\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=10n^2-n\) pre \(n\ge0\)</div>
+      <p class="check" style="margin-top:8px">Kontrola \(n=1\): \(i=1\): 2; \(i=2\): \(2+5\); spolu 9&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (3b)</span><a class="tag" href="#typ-odhad">odhad ~</a></div>
+    <p class="prompt">Určte výpočtom čo najpresnejšie (pomocou \(\sim\) notácie) počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i,j;
+  for (i=1; i&lt;=n; ++i)
+    for (j=0; j&lt;n; j+=i)
+      printf("**");
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Vnútorný cyklus ide \(j=0,i,2i,\dots&lt;n\), teda \(\lceil n/i\rceil\) prechodov. \(T(n)=2\sum_{i=1}^n\lceil n/i\rceil\).</p>
+      <p>Keďže \(\frac ni\le\lceil\frac ni\rceil&lt;\frac ni+1\), platí \(2nH_n\le T(n)&lt;2nH_n+2n\), kde \(H_n=\sum_{i=1}^n\frac1i\). Funkcia \(1/x\) je klesajúca:</p>
+      <div class="disp">\[\ln(n+1)=\int_1^{n+1}\frac{dx}{x}\;\le\;H_n\;\le\;1+\int_1^n\frac{dx}{x}=1+\ln n\quad\Rightarrow\quad H_n\sim\ln n .\]</div>
+      <p>Člen \(2n\) je \(o(n\ln n)\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)\sim 2n\ln n\)</div>
+      <p class="check" style="margin-top:8px">Podiel \(T(n)/(2n\ln n)\) ide k 1 pomaly (pre \(n=10^5\) je ešte 1,10), ale \(\sim\) hovorí len o limite.</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2+1b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master Theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=3T(n/2)+n^{8/5}\), &nbsp; b)&nbsp;\(T(n)=10T(n/4)+n^{8/5}\), &nbsp; c)&nbsp;\(T(n)=2T(n/4)+\sqrt n\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>a)</b> \(p=\log_2 3\approx1{,}58496&lt;1{,}6\), teda kandidát na MT3. Pre \(\varepsilon=0{,}01\): \(\lim n^{1{,}6}/n^{1{,}59496}=\lim n^{0{,}005}=\infty\). Regularita: \(3(n/2)^{8/5}=\frac{3}{2^{8/5}}n^{8/5}\), \(2^{8/5}\approx3{,}0314&gt;3\), teda \(c\approx0{,}9896&lt;1\)&nbsp;✓</p>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^{8/5})\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(p=\log_4 10\approx1{,}66096&gt;1{,}6\), teda MT1. Pre \(\varepsilon=0{,}05\): \(\lim n^{1{,}6}/n^{1{,}61096}=0\).</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n^{\log_4 10})\)</div>
+      <p style="margin-top:14px"><b>c)</b> \(p=\log_4 2=\tfrac12\), \(f=\sqrt n=\Theta(n^{1/2})\), teda MT2 s \(k=0\).</p>
+      <div class="ans"><b>c)</b>\(T(n)=\Theta(\sqrt n\log n)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (5b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procC.</p>
+<pre class="code">void procC (int n) {
+  int i;
+  if (n&gt;1) {
+    for (i=0; i&lt;n; i++)
+      printf("****");
+    procC(n-2);
+    printf("**");
+  }
+  else if (n==1) printf("***");
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=T(n-2)+4n+2\ \ (n\ge2),\qquad T(0)=0,\ T(1)=3.\]</div>
+      <p>\(d_n=\alpha+\beta(-1)^n\). Číslo 1 je koreň, \(b_n=n(An+B)\): \(4An-4A+2B=4n+2\Rightarrow A=1,\ B=3\).</p>
+      <p>\(T(n)=n^2+3n+\alpha+\beta(-1)^n\). Z \(T(0)=0\): \(\alpha+\beta=0\). Z \(T(1)=3\): \(4+\alpha-\beta=3\). Odtiaľ \(\alpha=-\tfrac12,\ \beta=\tfrac12\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=n^2+3n-\tfrac12+\tfrac12(-1)^n\): párne \(n\) dáva \(n^2+3n\), nepárne \(n^2+3n-1\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(2)=8+0+2=10\)&nbsp;✓, \(T(3)=12+3+2=17\), vzorec \(9+9-1=17\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <div class="aids">
+    <h4>Pomôcky</h4>
+    <div class="disp">\(\log_2 3=1{,}58496\ldots,\quad 8/5=1{,}6,\quad 2^{8/5}=3{,}03143\ldots,\quad \log_4 10=1{,}66096\ldots\)</div>
+    <div class="disp">\[f(n)=q(n)s^n,\quad b_n=n^m p(n)s^n\]</div>
+  </div>
+</div>
+
+<!-- ===== Cvičný 4 ===== -->
+<div class="sheet test" id="cvicny-4">
+  <div class="test-head">
+    <h3>Cvičný test 4 (starší formát)</h3>
+    <span class="meta">6 úloh · 22 bodov</span>
+    <button class="toggle-all" type="button">Ukázať všetky riešenia</button>
+  </div>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">1. (6b)</span><a class="tag" href="#typ-starsie">zoradenie</a></div>
+    <p class="prompt">Zoraďte funkcie podľa asymptotického rastu. Svoje tvrdenie dokážte!<br>\(3\ln n\); \(\log_2(n^3)\); \(\sqrt n+\ln n\); \(2\sqrt n+7\); \(\sqrt n\,\ln n\); \(\ln(n!)\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Zjednoduš: \(\log_2(n^3)=3\log_2 n=\dfrac{3\ln n}{\ln 2}\) a zo Stirlinga \(\ln n!\sim n\ln n\).</p>
+      <div class="disp">\[\lim\frac{3\ln n}{\log_2 n^3}=\ln2\approx0{,}693\ \Rightarrow\ \Theta\ (\text{nie }\sim)\]</div>
+      <div class="disp">\[\lim\frac{3\log_2 n}{\sqrt n+\ln n}=0\ \Rightarrow\ o,\qquad \lim\frac{\sqrt n+\ln n}{2\sqrt n+7}=\frac12\ \Rightarrow\ \Theta\]</div>
+      <div class="disp">\[\lim\frac{2\sqrt n+7}{\sqrt n\ln n}=\lim\frac{2}{\ln n}=0\ \Rightarrow\ o,\qquad \lim\frac{\sqrt n\ln n}{\ln n!}=\lim\frac{\sqrt n\ln n}{n\ln n}=\lim\frac{1}{\sqrt n}=0\ \Rightarrow\ o\]</div>
+      <div class="ans"><b>Výsledok</b>\(3\ln n\;\asymp\;\log_2(n^3)\) \(\;\prec\;\sqrt n+\ln n\;\asymp\;2\sqrt n+7\) \(\;\prec\;\sqrt n\ln n\;\prec\;\ln(n!)\)</div>
+      <p class="check" style="margin-top:8px">Bez Stirlinga stačí odhad \(\ln n!\ge\frac n2\ln\frac n2\) (polovica činiteľov je aspoň \(n/2\)).</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">2. (2b)</span><a class="tag" href="#typ-starsie">konštrukcia g</a></div>
+    <p class="prompt">K funkcii \(f(n)=n^3\) napíšte takú funkciu \(g(n)\), aby platilo \(f(n)=\Theta(g(n))\), ale neplatilo \(f(n)\sim g(n)\). Zdôvodnite!</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>Treba \(0&lt;\lim f/g&lt;\infty\) a zároveň limitu rôznu od 1. Napr. \(g(n)=2n^3\): \(\lim\frac{n^3}{2n^3}=\frac12\).</p>
+      <div class="ans"><b>Výsledok</b>\(g(n)=2n^3\) (ľubovoľný násobok \(c\,n^3\), \(c\neq1\))</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">3. (2b)</span><a class="tag" href="#typ-starsie">porovnanie algoritmov</a></div>
+    <p class="prompt">Problém riešia algoritmy \(A\) a \(B\). Pre \(A\) v najlepšom, priemernom a najhoršom prípade platí \(\Omega(n)\), \(O(n\log n)\), \(O(n^2)\). Pre \(B\) platí \(\Theta(n^2)\), \(\Theta(n^2)\), \(\Theta(n^2)\). Ktorý odporučíte? Zdôvodnite!</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <ul>
+        <li><b>Priemerný prípad:</b> \(A\) je \(O(n\log n)=o(n^2)\), \(B\) je \(\Theta(n^2)\). \(A\) je asymptoticky rýchlejší.</li>
+        <li><b>Najhorší prípad:</b> \(A\le c\,n^2\), \(B\ge c'n^2\). \(A\) nie je asymptoticky horší.</li>
+        <li><b>Najlepší prípad:</b> najlepší \(A\le\) priemer \(A=O(n\log n)\), teda tiež lepší ako \(\Theta(n^2)\).</li>
+      </ul>
+      <div class="ans"><b>Výsledok</b>odporúčam \(A\): v priemere je ostro lepší a v najhoršom prípade nie je horší.</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">4. (2+2b)</span><a class="tag" href="#typ-mt">master theorem</a></div>
+    <p class="prompt">Použite Master theorem na riešenie rekurencií. Riešenia zdôvodnite!<br>a)&nbsp;\(T(n)=7T(n/2)+n^2\), &nbsp; b)&nbsp;\(T(n)=3T(n/3)+n\log n\).</p>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p><b>a)</b> \(p=\log_2 7\approx2{,}807&gt;2\), teda MT1. Pre \(\varepsilon=0{,}5\): \(\lim n^2/n^{2{,}307}=0\). (Strassenovo násobenie matíc.)</p>
+      <div class="ans"><b>a)</b>\(T(n)=\Theta(n^{\log_2 7})\)</div>
+      <p style="margin-top:14px"><b>b)</b> \(p=\log_3 3=1\), \(f=\Theta(n\log^1 n)\), teda MT2 s \(k=1\). Pozor, nie je to MT3.</p>
+      <div class="ans"><b>b)</b>\(T(n)=\Theta(n\log^2 n)\)</div>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">5. (4b)</span><a class="tag" href="#typ-cykly">presný počet</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procA.</p>
+<pre class="code">void procA (int n) {
+  int i,j;
+  for (i=4; i&lt;n+2; ++i) {
+    printf("**");
+    for (j=n; j&gt;=i; --j)
+      printf("****");
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <p>\(i=4,\dots,n+1\): \(n-2\) prechodov (\(n\ge3\)). Vnútorný cyklus \(j=n,\dots,i\): \(n-i+1\) prechodov (pre \(i=n+1\) je to 0, to je v poriadku). Substitúcia \(k=n-i+1\), \(k=0,\dots,n-3\):</p>
+      <div class="disp">\[T(n)=2(n-2)+4\sum_{k=0}^{n-3}k=2(n-2)+2(n-3)(n-2)=2(n-2)^2 .\]</div>
+      <div class="ans"><b>Výsledok</b>\(T(n)=2(n-2)^2\) pre \(n\ge2\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(n=3\): len „**“, spolu 2&nbsp;✓; \(n=4\): \(i=4\): \(2+4\), \(i=5\): 2, spolu 8&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <article class="problem">
+    <div class="p-head"><span class="pts">6. (6b)</span><a class="tag" href="#typ-rekurzia">rekurencia</a></div>
+    <p class="prompt">Určte výpočtom presný počet hviezdičiek, ktoré vypíše procB.</p>
+<pre class="code">void procB (int n) {
+  int i;
+  if (n&gt;1) {
+    procB(n-1);
+    procB(n-1);
+    procB(n-2);
+    procB(n-2);
+    procB(n-2);
+    for (i=0; i&lt;n; i++)
+      printf("****");
+  }
+}</pre>
+    <details class="sol"><summary><span class="closed-label">Ukázať riešenie</span><span class="open-label">Riešenie</span></summary><div class="sol-body">
+      <div class="disp">\[T(n)=2T(n-1)+3T(n-2)+4n\ \ (n\ge2),\qquad T(0)=T(1)=0.\]</div>
+      <p><b>Homogénna časť:</b> \(x^2-2x-3=(x-3)(x+1)\), teda \(d_n=\alpha3^n+\beta(-1)^n\).<br><b>Partikulárne:</b> 1 nie je koreň, \(b_n=An+B\):</p>
+      <div class="disp">\[An+B-2\big(A(n-1)+B\big)-3\big(A(n-2)+B\big)=-4An+8A-4B=4n\ \Rightarrow\ A=-1,\ B=-2.\]</div>
+      <p>\(T(n)=\alpha3^n+\beta(-1)^n-n-2\). Z \(T(0)=0\): \(\alpha+\beta=2\). Z \(T(1)=0\): \(3\alpha-\beta=3\). Odtiaľ \(\alpha=\tfrac54,\ \beta=\tfrac34\).</p>
+      <div class="ans"><b>Výsledok</b>\(T(n)=\dfrac{5\cdot3^n+3(-1)^n}{4}-n-2\)</div>
+      <p class="check" style="margin-top:8px">Kontrola: \(T(2)=8\), vzorec \(\frac{45+3}{4}-4=8\)&nbsp;✓; \(T(3)=16+0+12=28\), vzorec \(\frac{135-3}{4}-5=28\)&nbsp;✓</p>
+    </div></details>
+  </article>
+
+  <div class="aids">
+    <h4>Pomôcky</h4>
+    <div class="disp">\(\log_2 7=2{,}80735\ldots,\quad n!\sim\sqrt{2\pi n}\,(n/e)^n\)</div>
+    <div class="disp">\[f(n)=q(n)s^n,\quad b_n=n^m p(n)s^n\]</div>
+  </div>
+</div>
+</section>
+
+<footer class="end">
+  Vypracované z materiálov predmetu (prednášky 1–4, cvičenia 1–4) a z fotiek testov 2023/24 až 2025/26. Presné počty hviezdičiek v riešených aj cvičných testoch sú overené simuláciou kódu.
+</footer>
+</main>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.test').forEach(function (test) {
+    var btn = test.querySelector('.toggle-all');
+    if (!btn) return;
+    var sols = Array.prototype.slice.call(test.querySelectorAll('details.sol'));
+    function sync() {
+      var allOpen = sols.every(function (d) { return d.open; });
+      btn.textContent = allOpen ? 'Skryť všetky riešenia' : 'Ukázať všetky riešenia';
+    }
+    btn.addEventListener('click', function () {
+      var allOpen = sols.every(function (d) { return d.open; });
+      sols.forEach(function (d) { d.open = !allOpen; });
+      sync();
+    });
+    sols.forEach(function (d) { d.addEventListener('toggle', sync); });
+    sync();
+  });
+})();
+</script>
+
+</body></html>
